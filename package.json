@@ -1,0 +1,14 @@
+{
+  "name": "advent-of-code-2024",
+  "version": "1.0.0",
+  "description": "Some quick and dirty solutions for advent of code 2024 build with node.",
+  "main": "main.mjs",
+  "author": "Jouni Varis",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0"
+  }
+}
