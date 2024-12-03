@@ -1,4 +1,4 @@
-import { readRows } from '../advent.mjs';
+import { readRows } from '../advent.js';
 
 const rows = readRows('2/input.txt');
 
