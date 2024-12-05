@@ -51,15 +51,12 @@ function part1() {
 }
 
 function part2() {
-  const orderPages = (pages) => {
-    const copyOfPages = pages.slice().sort((a, b) => {
-      if (instructions[a] && instructions[a].includes(b)) {
-        return 1;
-      }
-      return -1;
-    });
-    return copyOfPages;
-  };
+  const orderPages = (pages) =>
+    pages
+      .slice()
+      .sort((a, b) =>
+        instructions[a] && instructions[a].includes(b) ? 1 : -1
+      );
   printSumOfMiddlePages(invalidRowsOfPages.map((pages) => orderPages(pages)));
 }
 
