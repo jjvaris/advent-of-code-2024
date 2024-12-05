@@ -46,11 +46,11 @@ const printSumOfMiddlePages = (rowsOfPages) => {
   console.log(sum);
 };
 
-function one() {
+function part1() {
   printSumOfMiddlePages(validRowsOfPages);
 }
 
-function two() {
+function part2() {
   const orderPages = (pages) => {
     const copyOfPages = pages.slice().sort((a, b) => {
       if (instructions[a] && instructions[a].includes(b)) {
@@ -63,5 +63,5 @@ function two() {
   printSumOfMiddlePages(invalidRowsOfPages.map((pages) => orderPages(pages)));
 }
 
-one();
-two();
+part1();
+part2();
