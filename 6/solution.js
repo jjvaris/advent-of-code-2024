@@ -74,11 +74,10 @@ function move(map, x, y, currentDirection, moveCount) {
 }
 
 function countXs(map) {
-  let count = 0;
-  for (const row of map) {
-    count += (row.join('').match(/X/g) ?? []).length;
-  }
-  return count;
+  return map.reduce(
+    (acc, row) => (acc += (row.join('').match(/X/g) ?? []).length),
+    0
+  );
 }
 
 function getGuardLocation(map) {
