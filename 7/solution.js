@@ -21,7 +21,7 @@ function getMatchesFor(operatorCount) {
       .split(' ')
       .map((num) => parseInt(num));
     let combinations = [];
-    const calculations = Math.pow(3, numbers.length - 1);
+    const calculations = Math.pow(operatorCount, numbers.length - 1);
     for (let i = 0; i < calculations; i++) {
       combinations.push(
         String(i.toString(operatorCount))
