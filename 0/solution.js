@@ -3,9 +3,9 @@ import { readRows } from '../advent.js';
 // const rows = readRows('0/input.txt');
 // const rows = readRows('0/test-input.txt');
 
-function one() {}
+function part1() {}
 
-function two() {}
+function part2() {}
 
-one();
-two();
+part1();
+part2();
