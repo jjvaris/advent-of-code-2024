@@ -18,7 +18,7 @@ const [blocks] = input.reduce(
       [...Array(curr)].forEach((_, i) =>
         acc.push({
           type: 'freespace',
-          count: curr - i,
+          freeSpaceLeft: curr - i,
         })
       );
       return [acc, currId];
@@ -68,7 +68,7 @@ function part2() {
 
     const freeSpaceStartIndex = optimizedBlocks
       .filter((block) => block.type === 'freespace')
-      .find((space) => space.count >= spaceRequired)?.position;
+      .find((block) => block.freeSpaceLeft >= spaceRequired)?.position;
 
     if (freeSpaceStartIndex) {
       for (let i = 0; i < fileBlocksToMove.length; i++) {
