@@ -9,24 +9,23 @@ const input = readRows('9/input.txt')[0]
 //   .map((d) => parseInt(d));
 
 const [blocks] = input.reduce(
-  ([acc, currId, freeSpaceId], curr, i) => {
+  ([acc, currId], curr, i) => {
     if (i === input.length) {
       console.log(currId);
     }
     const isFile = i % 2 === 0;
     if (isFile) {
       [...Array(curr)].forEach(() => acc.push({ type: 'file', id: currId }));
-      return [acc, currId + 1, freeSpaceId];
+      return [acc, currId + 1];
     } else {
       [...Array(curr)].forEach((_, i) =>
         acc.push({
           type: 'freespace',
-          id: freeSpaceId,
           count: curr - i,
         })
       );
 
-      return [acc, currId, freeSpaceId + 1];
+      return [acc, currId];
     }
   },
   [[], 0, 0]
