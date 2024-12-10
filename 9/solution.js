@@ -10,9 +10,6 @@ const input = readRows('9/input.txt')[0]
 
 const [blocks] = input.reduce(
   ([acc, currId], curr, i) => {
-    if (i === input.length) {
-      console.log(currId);
-    }
     const isFile = i % 2 === 0;
     if (isFile) {
       [...Array(curr)].forEach(() => acc.push({ type: 'file', id: currId }));
@@ -24,7 +21,6 @@ const [blocks] = input.reduce(
           count: curr - i,
         })
       );
-
       return [acc, currId];
     }
   },
