@@ -28,7 +28,7 @@ const [blocks] = input.reduce(
       return [acc, currId];
     }
   },
-  [[], 0, 0]
+  [[], 0]
 );
 
 function part1() {
