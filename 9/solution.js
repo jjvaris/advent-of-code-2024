@@ -61,20 +61,26 @@ function part2() {
 
   for (let id = largestId; id >= 0; id--) {
     const fileBlocksToMove = optimizedBlocks.filter(
-      (block) => block.id === id && block.type === 'file'
+      (block) => block.id === id && block.type === 'file' && id !== 0
     );
+
+    if (fileBlocksToMove.length === 0) {
+      continue;
+    }
 
     const spaceRequired = fileBlocksToMove.length;
 
     const freeSpaceStartIndex = optimizedBlocks
       .filter((block) => block.type === 'freespace')
+      .filter((block) => block.position < fileBlocksToMove[0].position)
       .find((block) => block.freeSpaceLeft >= spaceRequired)?.position;
 
-    if (freeSpaceStartIndex) {
+    if (freeSpaceStartIndex !== undefined) {
       for (let i = 0; i < fileBlocksToMove.length; i++) {
         optimizedBlocks[freeSpaceStartIndex + i] = fileBlocksToMove[i];
         optimizedBlocks[fileBlocksToMove[i].position] = {
           type: 'moved-file-from-here',
+          originalPosition: fileBlocksToMove[i].position,
         };
       }
     }
