@@ -1,40 +1,44 @@
-// const input = '125 17';
+import { memoize } from '../advent.js';
+
 const input = '4189 413 82070 61 655813 7478611 0 8';
-const initialStones = input.split(' ').map((d) => parseInt(d));
+const stones = input.split(' ').map((d) => parseInt(d));
 
 function part1() {
-  const stones = blinkFor(initialStones, 25);
-  console.log(stones.length);
+  console.log('Part 1:', getStoneCount(stones, 25));
 }
 
-function blinkFor(stones, times) {
-  let newStones = stones;
-  for (let i = 0; i < times; i++) {
-    newStones = blink(newStones);
+function part2() {
+  console.log('Part 2:', getStoneCount(stones, 75));
+}
+
+function getStoneCount(stones, blinks) {
+  return stones.reduce((sum, stone) => (sum += cachedBlink(stone, blinks)), 0);
+}
+
+const cachedBlink = memoize(blink);
+
+function blink(stone, depth) {
+  if (depth === 0) {
+    return 1;
   }
-  return newStones;
-}
-
-function blink(stones) {
-  const copy = stones.slice();
-  const newStones = [];
-
-  for (let i = 0; i < copy.length; i++) {
-    const stone = copy[i];
-    if (stone === 0) {
-      newStones.push(1);
-    } else if (`${stone}`.length % 2 === 0) {
-      const stoneLength = `${stone}`.length;
-      newStones.push(parseInt(`${stone}`.slice(0, stoneLength / 2)));
-      newStones.push(parseInt(`${stone}`.slice(stoneLength / 2, stoneLength)));
-    } else {
-      newStones.push(stone * 2024);
-    }
+  if (stone === 0) {
+    return cachedBlink(1, depth - 1);
   }
-  return newStones;
+  const stoneString = `${stone}`;
+  if (stoneString.length % 2 === 0) {
+    return (
+      cachedBlink(
+        parseInt(stoneString.slice(0, stoneString.length / 2)),
+        depth - 1
+      ) +
+      cachedBlink(
+        parseInt(stoneString.slice(stoneString.length / 2, stoneString.length)),
+        depth - 1
+      )
+    );
+  }
+  return cachedBlink(stone * 2024, depth - 1);
 }
-
-function part2() {}
 
 part1();
 part2();
