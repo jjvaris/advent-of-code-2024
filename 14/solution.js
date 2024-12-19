@@ -102,4 +102,4 @@ function printMap(robots, height, width) {
 }
 
 part1();
-part2();
+part2(); // requires manual shutdown

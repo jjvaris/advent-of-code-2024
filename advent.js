@@ -4,6 +4,7 @@ export const readRows = (filename) =>
   fs.readFileSync(`./${filename}`).toString().split('\n');
 
 export const sum = (numbers) => numbers.reduce((acc, cur) => (acc += cur), 0);
+export const mul = (numbers) => numbers.reduce((acc, cur) => (acc *= cur), 1);
 
 export const memoize = (fn) => {
   const cache = new Map();
@@ -17,3 +18,5 @@ export const memoize = (fn) => {
     return result;
   };
 };
+
+export const mod = (n, m) => ((n % m) + m) % m;
